@@ -1,0 +1,71 @@
+/* ============================================================
+   DSEU FREE FIRE ESPORTS TOURNAMENT — SUCCESS PAGE STYLES
+   File : css/success.css  (only loaded on success.html)
+   ============================================================ */
+
+.success-wrap { min-height: 70vh; display: grid; place-items: center; padding: 40px 0 60px; }
+.success-card { width: min(640px, 100%); text-align: center; padding: clamp(30px, 5vw, 54px); position: relative; overflow: hidden; }
+
+.success-card::before {
+  content: ""; position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
+  background: radial-gradient(420px 240px at 50% 0%, rgba(46, 213, 115, 0.16), transparent 70%);
+}
+
+.checkmark {
+  width: 96px; height: 96px; margin: 0 auto 22px; display: grid; place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(46, 213, 115, 0.25), rgba(46, 213, 115, 0.08));
+  border: 2px solid rgba(46, 213, 115, 0.5);
+  color: #58e58a;
+  box-shadow: 0 0 40px rgba(46, 213, 115, 0.35);
+  animation: pop 0.6s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.checkmark svg { width: 52px; height: 52px; }
+@keyframes pop { 0% { transform: scale(0); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+
+.success-card h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); text-transform: uppercase; letter-spacing: 1px; }
+.success-card h1 .grad-text { color: #58e58a; }
+.success-sub { color: var(--text-muted); margin-top: 12px; max-width: 46ch; margin-inline: auto; }
+
+.id-box {
+  display: inline-block; margin: 26px auto 6px; padding: 16px 28px;
+  border-radius: 14px; border: 1px dashed rgba(255, 107, 0, 0.5);
+  background: rgba(255, 107, 0, 0.08);
+  font-family: var(--font-display); font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 800;
+  color: var(--primary-soft); letter-spacing: 2px; box-shadow: var(--glow);
+}
+.id-label { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0 8px; }
+.detail-box { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 16px; }
+.detail-box .k { font-size: 0.7rem; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+.detail-box .v { font-weight: 700; color: var(--text-main); font-size: 1.05rem; word-break: break-word; }
+
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 6px;
+  padding: 8px 18px; border-radius: 50px;
+  background: rgba(255, 201, 77, 0.12); border: 1px solid rgba(255, 201, 77, 0.35);
+  color: var(--gold); font-weight: 800; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.status-pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); animation: blink 1.4s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.3; } }
+
+.whatsapp-msg {
+  margin: 20px auto; padding: 16px 18px; max-width: 46ch;
+  border-radius: 12px; background: rgba(46, 213, 115, 0.07);
+  border: 1px solid rgba(46, 213, 115, 0.25); color: var(--text-muted); font-size: 0.98rem;
+}
+.whatsapp-msg .icon { color: #58e58a; vertical-align: -3px; margin-right: 6px; }
+
+.success-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 26px; }
+
+@media (max-width: 500px) {
+  .detail-grid { grid-template-columns: 1fr; }
+  .success-actions { flex-direction: column; }
+  .success-actions .btn { width: 100%; }
+}
+/* payment status pill variants (matches success message colours) */
+.status-pill.pay-verified { background: rgba(46, 213, 115, 0.12); border: 1px solid rgba(46, 213, 115, 0.35); color: #58e58a; }
+.status-pill.pay-verified::before { background: #58e58a; box-shadow: 0 0 10px #2ed573; animation: none; }
+.status-pill.pay-rejected { background: rgba(255, 71, 87, 0.12); border: 1px solid rgba(255, 71, 87, 0.35); color: #ff7a89; }
+.status-pill.pay-rejected::before { background: #ff4757; box-shadow: 0 0 10px #ff4757; animation: none; }

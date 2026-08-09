@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Successful — DSEU Free Fire Esports Tournament</title>
+  <meta name="description" content="Your team has been registered successfully.">
+
+  <!-- Browser tab icon (fire bolt) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0a12'/><path fill='%23ff6b00' d='M60 10 26 58h20l-6 32 36-46H54z'/></svg>">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/success.css">
+</head>
+<body class="page-wrap">
+
+  <!-- ============ ICON SPRITE ============ -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="icon-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+    <symbol id="icon-message" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  </svg>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><svg class="icon"><use href="#icon-zap"/></svg></span>
+        <span class="brand-text">DSEU<span>ESPORTS</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="register.html" class="nav-link">Register</a></li>
+          <li><a href="admin.html" class="nav-link">Admin</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon icon-menu"><use href="#icon-menu"/></svg>
+        <svg class="icon icon-x"><use href="#icon-x"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ SUCCESS MESSAGE ============ -->
+    <section class="success-wrap">
+      <div class="container">
+        <div class="success-card glass-card">
+
+          <!-- big animated checkmark -->
+          <div class="checkmark">
+            <svg class="icon"><use href="#icon-check-circle"/></svg>
+          </div>
+
+          <h1>REGISTRATION <span class="grad-text">SUCCESSFUL</span> 🎮</h1>
+          <p class="success-sub">Your registration has been received successfully.</p>
+
+          <!-- registration id -->
+          <div class="id-box">
+            <span class="id-label">Your Registration ID</span>
+            <span id="regId">DSEU-FE-000</span>
+          </div>
+
+          <!-- quick details -->
+          <div class="detail-grid">
+            <div class="detail-box">
+              <div class="k">Team Name</div>
+              <div class="v" id="regTeam">—</div>
+            </div>
+            <div class="detail-box">
+              <div class="k">Registration ID</div>
+              <div class="v" id="regId2">—</div>
+            </div>
+            <div class="detail-box">
+              <div class="k">Participant Category</div>
+              <div class="v" id="regCategory">—</div>
+            </div>
+            <div class="detail-box">
+              <div class="k">Registration Fee</div>
+              <div class="v" id="regFee">—</div>
+            </div>
+            <div class="detail-box">
+              <div class="k">Payment Status</div>
+              <div style="margin-top: 4px;"><span class="status-pill pay-pending" id="regPaymentStatus">Pending Verification</span></div>
+            </div>
+          </div>
+
+          <div class="whatsapp-msg">
+            <svg class="icon"><use href="#icon-message"/></svg>
+            Your registration has been received successfully. Your payment is currently being verified.<br>
+            Tournament and match details will be shared on WhatsApp after verification.
+          </div>
+
+          <div class="success-actions">
+            <a href="index.html" class="btn btn-outline">Back to Home</a>
+            <a href="admin.html" class="btn btn-ghost">View Registrations</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year">2026</span> DSEU Esports Tournament · <a href="index.html" style="color: var(--primary-soft);">Home</a></div>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/main.js"></script>
+  <script src="js/success.js"></script>
+</body>
+</html>

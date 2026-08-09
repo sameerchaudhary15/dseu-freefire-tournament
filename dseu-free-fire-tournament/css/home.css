@@ -1,0 +1,225 @@
+/* ============================================================
+   DSEU FREE FIRE ESPORTS TOURNAMENT — HOME PAGE STYLES
+   File : css/home.css  (only loaded on index.html)
+   ============================================================ */
+
+/* ---------- 1. HERO SECTION ---------- */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 130px 0 90px; overflow: hidden;
+  isolation: isolate;
+}
+/* faint neon grid floor */
+.hero-grid-overlay {
+  position: absolute; inset: 0; z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 107, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 107, 0, 0.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 55%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse at 50% 55%, #000 25%, transparent 78%);
+}
+/* soft glowing orbs that drift around the hero */
+.hero-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; z-index: -1; }
+.orb-1 { width: 500px; height: 500px; top: -140px; right: -110px;
+  background: radial-gradient(circle, rgba(255, 107, 0, 0.55), transparent 65%);
+  animation: drift1 10s ease-in-out infinite; }
+.orb-2 { width: 440px; height: 440px; bottom: -120px; left: -130px;
+  background: radial-gradient(circle, rgba(255, 46, 46, 0.4), transparent 65%);
+  animation: drift2 12s ease-in-out infinite; }
+@keyframes drift1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-50px, 40px) scale(1.12); } }
+@keyframes drift2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(56px, -36px) scale(1.08); } }
+
+.hero-inner { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: center; position: relative; z-index: 2; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 50px;
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  background: rgba(255, 107, 0, 0.1);
+  color: var(--primary-soft); font-weight: 700;
+  font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+  animation: badgePulse 2.6s ease-in-out infinite;
+}
+@keyframes badgePulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.35); } 50% { box-shadow: 0 0 22px 4px rgba(255, 107, 0, 0.25); } }
+
+.hero-title { font-size: clamp(2rem, 5vw, 3.7rem); text-transform: uppercase; margin: 20px 0 16px; letter-spacing: 1px; }
+.hero-tagline { font-size: clamp(1.08rem, 1.8vw, 1.3rem); color: var(--text-muted); font-weight: 500; max-width: 36ch; }
+.hero-tagline strong { color: var(--primary-soft); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+
+.hero-stats { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 38px; }
+.hero-stat .num { font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; color: var(--text-main); }
+.hero-stat .num small { color: var(--primary-soft); }
+.hero-stat .label { font-size: 0.78rem; letter-spacing: 1.8px; text-transform: uppercase; color: var(--text-dim); font-weight: 700; margin-top: 4px; }
+/* right-hand visual player card */
+.hero-art { position: relative; display: grid; place-items: center; }
+.hero-card { width: min(100%, 400px); padding: 26px; border-radius: 24px; position: relative; overflow: hidden; }
+.hero-card::before {
+  content: ""; position: absolute; inset: 0; opacity: 0.5;
+  background: radial-gradient(360px 220px at 50% 0%, rgba(255, 107, 0, 0.22), transparent 70%);
+}
+.hc-top { display: flex; align-items: center; justify-content: space-between; }
+.hc-live { display: inline-flex; align-items: center; gap: 7px; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; color: #ff7a89; text-transform: uppercase; }
+.live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--danger); box-shadow: 0 0 12px var(--danger); animation: blink 1.2s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.25; } }
+
+.hc-center { text-align: center; padding: 26px 0 18px; }
+.hc-bolt {
+  width: 86px; height: 86px; margin: 0 auto 16px; display: grid; place-items: center;
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--primary), var(--danger));
+  box-shadow: var(--glow-strong); color: #fff;
+  animation: floaty 4s ease-in-out infinite;
+}
+.hc-bolt svg { width: 44px; height: 44px; }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.hc-title { font-size: 1.25rem; letter-spacing: 2px; text-transform: uppercase; }
+.hc-sub { color: var(--text-muted); font-size: 0.95rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 6px; }
+
+.hc-prize { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 18px; }
+.hc-prize .icon { color: var(--gold); font-size: 1.15rem; }
+.hc-prize b { font-family: var(--font-display); color: var(--gold); font-size: 1.35rem; letter-spacing: 1px; }
+
+.hc-avatars { display: flex; justify-content: center; padding-top: 18px; border-top: 1px dashed rgba(255, 255, 255, 0.14); }
+.avatar {
+  width: 46px; height: 46px; border-radius: 50%; margin-left: -10px;
+  border: 2px solid #171720;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.5), rgba(255, 46, 46, 0.5));
+  display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 0.92rem;
+}
+.avatar:first-child { margin-left: 0; }
+
+/* floating chips around the art */
+.chip {
+  position: absolute; padding: 10px 16px; border-radius: 12px;
+  background: rgba(10, 10, 18, 0.85); border: 1px solid rgba(255, 107, 0, 0.35);
+  color: var(--text-main); font-size: 0.82rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  box-shadow: var(--glow); animation: floaty 5s ease-in-out infinite;
+  display: flex; align-items: center; gap: 8px;
+}
+.chip .icon { color: var(--primary-soft); }
+.chip-1 { top: 6%; left: -4%; }
+.chip-2 { bottom: 12%; right: -6%; animation-delay: 1.4s; }
+
+/* bouncing scroll hint */
+.hero-scroll { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); color: var(--text-dim); }
+.hero-scroll .icon { animation: bounceDown 2s ease-in-out infinite; }
+@keyframes bounceDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+/* ---------- 2. TOURNAMENT INFO ---------- */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 20px; }
+.info-card { padding: 30px 24px; text-align: center; position: relative; overflow: hidden; }
+.info-icon {
+  width: 60px; height: 60px; margin: 0 auto 16px; display: grid; place-items: center;
+  border-radius: 16px; color: var(--primary-soft); font-size: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.22), rgba(255, 46, 46, 0.12));
+  border: 1px solid rgba(255, 107, 0, 0.35); box-shadow: var(--glow);
+}
+.info-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; color: var(--text-dim); }
+.info-value { font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; margin-top: 8px; color: var(--text-main); }
+.info-card:nth-child(2) .info-value { color: var(--gold); }
+.info-desc { color: var(--text-muted); margin-top: 8px; font-size: 0.97rem; }
+
+/* ---------- 3. ABOUT ---------- */
+.about { background: linear-gradient(180deg, transparent, rgba(255, 107, 0, 0.04) 40%, transparent); }
+.about-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; }
+.about-heading { font-size: clamp(1.5rem, 3vw, 2.2rem); text-transform: uppercase; margin-bottom: 16px; }
+.about-copy p { color: var(--text-muted); margin-bottom: 16px; }
+.about-feats { margin-top: 22px; display: grid; gap: 13px; }
+.about-feat { display: flex; gap: 12px; align-items: center; color: var(--text-main); font-weight: 600; }
+.about-feat .icon {
+  color: var(--primary-soft); background: rgba(255, 107, 0, 0.12);
+  border: 1px solid rgba(255, 107, 0, 0.3); border-radius: 8px;
+  padding: 6px; width: 32px; height: 32px; box-sizing: content-box;
+}
+
+.about-card { padding: 28px; }
+.about-card h3 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; }
+.ac-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); }
+.ac-row:last-child { border-bottom: none; }
+.ac-row .k { color: var(--text-dim); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; }
+.ac-row .v { font-family: var(--font-display); font-weight: 700; color: var(--primary-soft); font-size: 0.9rem; }
+.ac-row .v.live { color: #ff7a89; }
+
+/* ---------- 4. HIGHLIGHTS ---------- */
+.hl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.hl-card { position: relative; padding: 28px 24px; overflow: hidden; }
+.hl-num { position: absolute; top: 12px; right: 16px; font-family: var(--font-display); font-weight: 900; font-size: 2.6rem; color: rgba(255, 107, 0, 0.14); }
+.hl-icon {
+  width: 54px; height: 54px; display: grid; place-items: center; border-radius: 14px;
+  margin-bottom: 18px; color: var(--primary-soft); font-size: 1.4rem;
+  background: rgba(255, 107, 0, 0.12); border: 1px solid rgba(255, 107, 0, 0.3); box-shadow: var(--glow);
+}
+.hl-card h3 { font-size: 1.02rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.hl-card p { color: var(--text-muted); font-size: 0.96rem; }
+
+/* ---------- 5. REGISTRATION PROCESS ---------- */
+.process { background: linear-gradient(180deg, transparent, rgba(255, 46, 46, 0.045) 40%, transparent); }
+.process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.process-card { position: relative; padding: 30px 22px 26px; overflow: hidden; }
+.process-step { font-family: var(--font-display); font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; color: var(--primary-soft); margin-bottom: 12px; }
+.process-icon {
+  width: 50px; height: 50px; display: grid; place-items: center; margin-bottom: 16px;
+  border-radius: 13px; background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border); color: var(--primary-soft);
+}
+.process-card h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 8px; }
+.process-card p { color: var(--text-muted); font-size: 0.95rem; }
+/* ---------- 6. RULES ---------- */
+.rules-card { padding: clamp(22px, 4vw, 40px); }
+.rules-highlight { color: var(--primary-soft); font-weight: 700; }
+.rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 30px; }
+.rule-item { display: flex; gap: 12px; align-items: flex-start; color: var(--text-muted); padding: 10px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.08); }
+.rule-item .icon { color: var(--green); margin-top: 4px; flex: none; }
+.rules-note { margin-top: 24px; padding: 16px 18px; border-radius: 12px; background: rgba(255, 107, 0, 0.07); border: 1px solid rgba(255, 107, 0, 0.25); color: var(--text-muted); font-size: 0.97rem; }
+.rules-note strong { color: var(--primary-soft); }
+
+/* ---------- 7. FAQ ---------- */
+.faq-list { max-width: 760px; margin: 0 auto; }
+.faq-item {
+  border: 1px solid var(--glass-border); border-radius: 14px;
+  background: var(--card-bg); margin-bottom: 13px; overflow: hidden;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.faq-item.open { border-color: rgba(255, 107, 0, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), var(--glow); }
+.faq-question {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 19px 22px; background: none; border: none; color: var(--text-main);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.6px; text-align: left;
+}
+.faq-question .icon { color: var(--text-dim); transition: transform 0.3s, color 0.3s; flex: none; }
+.faq-item.open .faq-question .icon { transform: rotate(180deg); color: var(--primary-soft); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-answer-inner { padding: 0 22px 20px; color: var(--text-muted); font-size: 0.99rem; }
+
+/* ---------- 8. FINAL CTA ---------- */
+.cta-section { position: relative; text-align: center; overflow: hidden; padding: clamp(90px, 12vw, 150px) 0; }
+.cta-section .cta-glow {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(700px 340px at 50% 40%, rgba(255, 107, 0, 0.2), transparent 70%),
+    radial-gradient(600px 300px at 50% 100%, rgba(255, 46, 46, 0.12), transparent 70%);
+}
+.cta-section h2 { font-size: clamp(1.8rem, 4.4vw, 3rem); text-transform: uppercase; letter-spacing: 1px; }
+.cta-section p { color: var(--text-muted); margin: 14px auto 0; max-width: 46ch; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 30px; }
+
+/* ---------- 9. HOME RESPONSIVE ---------- */
+@media (max-width: 940px) {
+  .hero { padding: 120px 0 70px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+  .hero-tagline { margin-inline: auto; }
+  .hero-cta, .hero-stats { justify-content: center; }
+  .hero-art { order: 2; }
+  .chip-1 { left: 2%; }
+  .chip-2 { right: 2%; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .rules-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .hero-stats { gap: 22px; }
+  .hero-stat .num { font-size: 1.3rem; }
+  .chip { display: none; }
+}

@@ -1,0 +1,83 @@
+/* ============================================================
+   DSEU FREE FIRE ESPORTS TOURNAMENT — ADMIN LOGIN PAGE STYLES
+   File : css/admin-login.css  (only loaded on admin-login.html)
+   Matches the dark gaming look used across the whole site.
+   ============================================================ */
+
+.auth-wrap { min-height: 72vh; display: grid; place-items: center; padding: 30px 0 70px; }
+
+.auth-card {
+  width: min(500px, 100%); text-align: center;
+  padding: clamp(30px, 5vw, 50px); position: relative; overflow: hidden;
+}
+.auth-card::before {
+  content: ""; position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
+  background: radial-gradient(380px 220px at 50% 0%, rgba(255, 107, 0, 0.16), transparent 70%);
+}
+
+.auth-icon {
+  width: 74px; height: 74px; margin: 0 auto 18px; display: grid; place-items: center;
+  border-radius: 20px; color: var(--primary-soft); font-size: 1.6rem;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.22), rgba(255, 46, 46, 0.12));
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  box-shadow: var(--glow);
+}
+.auth-title { font-size: clamp(1.5rem, 4vw, 2rem); text-transform: uppercase; letter-spacing: 1px; }
+.auth-sub { color: var(--text-muted); margin-top: 10px; }
+
+/* ---------- FORM FIELDS ---------- */
+.auth-form { margin-top: 28px; text-align: left; }
+.auth-field { margin-bottom: 18px; }
+.auth-field label { display: block; font-weight: 700; letter-spacing: 0.7px; margin-bottom: 8px; color: var(--text-main); font-size: 0.97rem; }
+.req { color: var(--danger); margin-left: 2px; }
+
+.auth-field .input-wrap { position: relative; display: block; }
+.auth-field .input-wrap .lead-icon {
+  position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+  color: var(--text-dim); width: 18px; height: 18px; pointer-events: none;
+}
+.auth-field input {
+  width: 100%; padding: 13px 52px 13px 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  font-family: var(--font-body); font-size: 1.05rem;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.auth-field input::placeholder { color: var(--text-dim); }
+.auth-field input:focus {
+  outline: none; border-color: var(--primary);
+  background: rgba(255, 107, 0, 0.06);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.18);
+}
+
+/* ---- show / hide password button ---- */
+.toggle-btn {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--text-dim);
+  padding: 9px; border-radius: 8px; display: grid; place-items: center;
+  transition: color 0.2s, background 0.2s;
+}
+.toggle-btn:hover { color: var(--primary-soft); background: rgba(255, 107, 0, 0.1); }
+.toggle-btn .icon-eye-closed { display: none; }
+.toggle-btn.active .icon-eye-open { display: none; }
+.toggle-btn.active .icon-eye-closed { display: inline-block; }
+
+/* ---------- ERROR MESSAGE ---------- */
+.error-msg {
+  display: none; margin: 4px 0 0; padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.4);
+  color: #ff8a95; font-weight: 700; font-size: 0.92rem; text-align: center;
+}
+.error-msg.show { display: block; }
+
+/* ---------- BUTTONS ---------- */
+.auth-btn { width: 100%; margin-top: 8px; }
+.back-home { width: 100%; margin-top: 12px; }
+
+@media (max-width: 500px) {
+  .auth-card { padding: 26px 20px; }
+}

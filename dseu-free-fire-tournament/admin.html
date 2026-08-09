@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — DSEU Free Fire Esports Tournament</title>
+  <meta name="description" content="View and manage tournament registrations.">
+
+  <!-- Browser tab icon (fire bolt) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0a12'/><path fill='%23ff6b00' d='M60 10 26 58h20l-6 32 36-46H54z'/></svg>">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="page-wrap">
+
+  <!-- ============ ICON SPRITE ============ -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+    <symbol id="icon-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  </svg>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><svg class="icon"><use href="#icon-zap"/></svg></span>
+        <span class="brand-text">DSEU<span>ESPORTS</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="register.html" class="nav-link">Register</a></li>
+          <li><a href="admin.html" class="nav-link active">Admin</a></li>
+          <li><button type="button" class="btn btn-ghost btn-sm nav-cta" id="btnLogout">Logout</button></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon icon-menu"><use href="#icon-menu"/></svg>
+        <svg class="icon icon-x"><use href="#icon-x"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ ADMIN DASHBOARD ============ -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-tag">Admin Panel</span>
+        <h1>Registration <span class="grad-text">Dashboard</span></h1>
+        <p>View, verify and manage every team that registered for the tournament.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 46px;">
+      <div class="container">
+
+        <!-- ============ STAT CARDS ============ -->
+        <div class="stat-grid">
+          <div class="stat-card glass-card stat-total">
+            <div class="stat-icon"><svg class="icon"><use href="#icon-users"/></svg></div>
+            <div class="stat-info"><div class="stat-num" id="statTotal">0</div><div class="stat-label">Total</div></div>
+          </div>
+          <div class="stat-card glass-card stat-pending">
+            <div class="stat-icon"><svg class="icon"><use href="#icon-calendar"/></svg></div>
+            <div class="stat-info"><div class="stat-num" id="statPending">0</div><div class="stat-label">Payments Pending</div></div>
+          </div>
+          <div class="stat-card glass-card stat-approved">
+            <div class="stat-icon"><svg class="icon"><use href="#icon-check"/></svg></div>
+            <div class="stat-info"><div class="stat-num" id="statApproved">0</div><div class="stat-label">Payments Verified</div></div>
+          </div>
+          <div class="stat-card glass-card stat-rejected">
+            <div class="stat-icon"><svg class="icon"><use href="#icon-x"/></svg></div>
+            <div class="stat-info"><div class="stat-num" id="statRejected">0</div><div class="stat-label">Payments Rejected</div></div>
+          </div>
+        </div>
+
+        <!-- ============ TOOLBAR ============ -->
+        <div class="admin-toolbar">
+          <h2>All Registrations</h2>
+          <div class="toolbar-right">
+            <div class="search-box">
+              <svg class="icon"><use href="#icon-search"/></svg>
+              <input type="text" id="searchInput" placeholder="Search by team name or reg. ID...">
+            </div>
+            <div class="status-filter">
+              <select id="statusFilter" aria-label="Filter registrations">
+                <option value="all">All</option>
+                <option value="college">DSEU / College Student</option>
+                <option value="outsider">Outsider</option>
+                <option value="pay-pending">Payment Pending</option>
+                <option value="pay-verified">Payment Verified</option>
+                <option value="pay-rejected">Payment Rejected</option>
+              </select>
+            </div>
+            <button class="btn btn-outline btn-sm" id="btnExport">
+              <svg class="icon"><use href="#icon-download"/></svg> Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- ============ TABLE WRAPPER (scrolls on small screens) ============ -->
+        <div class="table-wrap glass-card">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Registration ID</th>
+                <th>Team Name</th>
+                <th>Captain</th>
+                <th>Category</th>
+                <th>Fee</th>
+                <th>UTR</th>
+                <th>Payment Status</th>
+                <th>Registration Status</th>
+                <th>Date</th>
+                <th class="th-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- rows are rendered by js/admin.js -->
+            </tbody>
+          </table>
+          <div class="empty-state" id="emptyState" style="display:none;">
+            <svg class="icon" style="font-size: 2.4rem; color: var(--text-dim); margin-bottom: 12px;"><use href="#icon-users"/></svg>
+            <h3>No registrations found</h3>
+            <p>Try a different search, or register your first team.</p>
+          </div>
+        </div>
+
+        <p class="table-note">💡 Tip: this data is stored locally in your browser (localStorage) — no server or database is used in this version.</p>
+      </div>
+    </section>
+
+    <!-- ============ DETAIL MODAL ============ -->
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-card glass-card">
+        <button class="modal-close" data-close aria-label="Close"><svg class="icon"><use href="#icon-x"/></svg></button>
+        <div class="modal-head">
+          <span class="modal-badge" id="modalBadge">Pending</span>
+          <h2 id="modalTeam">Team Name</h2>
+          <p id="modalId">DSEU-FE-000</p>
+        </div>
+        <div class="modal-body" id="modalBody"><!-- filled by JS --></div>
+        <div class="modal-actions-row">
+          <span class="modal-actions-label">Registration Status</span>
+          <div class="modal-status-actions">
+            <button class="btn btn-ghost btn-sm" data-status="Pending">Pending</button>
+            <button class="btn btn-outline btn-sm" data-status="Approved">Approve</button>
+            <button class="btn btn-danger btn-sm" data-status="Rejected">Reject</button>
+          </div>
+        </div>
+        <div class="modal-actions-row">
+          <span class="modal-actions-label">Payment Status · manual verification</span>
+          <div class="modal-status-actions">
+            <button class="btn btn-ghost btn-sm" data-pay="Pending Verification">Pending Verification</button>
+            <button class="btn btn-outline btn-sm" data-pay="Payment Verified">Payment Verified</button>
+            <button class="btn btn-danger btn-sm" data-pay="Payment Rejected">Payment Rejected</button>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn btn-danger btn-sm" id="modalDelete"><svg class="icon"><use href="#icon-trash"/></svg> Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CONFIRM DELETE DIALOG ============ -->
+    <div class="confirm-overlay" id="confirmOverlay">
+      <div class="confirm-box glass-card">
+        <h3>Delete Registration?</h3>
+        <p id="confirmText">Are you sure?</p>
+        <div class="confirm-actions">
+          <button class="btn btn-ghost" id="confirmCancelBtn">Cancel</button>
+          <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year">2026</span> DSEU Esports Tournament · <a href="index.html" style="color: var(--primary-soft);">Home</a></div>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

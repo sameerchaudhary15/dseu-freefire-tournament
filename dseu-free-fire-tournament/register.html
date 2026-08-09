@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — DSEU Free Fire Esports Tournament</title>
+  <meta name="description" content="Register your squad for the DSEU Free Fire Esports Tournament.">
+
+  <!-- Browser tab icon (fire bolt) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0a12'/><path fill='%23ff6b00' d='M60 10 26 58h20l-6 32 36-46H54z'/></svg>">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/register.css">
+</head>
+<body class="page-wrap">
+
+  <!-- ============ ICON SPRITE ============ -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="icon-card" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></symbol>
+    <symbol id="icon-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="4" y1="12" x2="20" y2="12"/></symbol>
+    <symbol id="icon-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  </svg>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><svg class="icon"><use href="#icon-zap"/></svg></span>
+        <span class="brand-text">DSEU<span>ESPORTS</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="register.html" class="nav-link active">Register</a></li>
+          <li><a href="admin.html" class="btn btn-ghost btn-sm nav-cta">Admin</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon icon-menu"><use href="#icon-menu"/></svg>
+        <svg class="icon icon-x"><use href="#icon-x"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ REGISTRATION PAGE ============ -->
+    <!-- Page hero -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-tag">Team Registration</span>
+        <h1><span class="grad-text">Register</span> Your Squad</h1>
+        <p>Fill in all four steps carefully. Fields marked with <span style="color: var(--danger);">*</span> are required.</p>
+        <span class="steps-count">Steps 1 – 5 · Takes ~5 minutes</span>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 46px;">
+      <div class="container">
+
+        <!-- ============ PROGRESS INDICATOR ============ -->
+        <div class="progress-wrap" id="progressWrap">
+          <div class="step-row">
+            <div class="step active" data-step="1">
+              <span class="step-dot">1</span>
+              <span class="step-label">Team Details</span>
+            </div>
+            <div class="step" data-step="2">
+              <span class="step-dot">2</span>
+              <span class="step-label">Players</span>
+            </div>
+            <div class="step" data-step="3">
+              <span class="step-dot">3</span>
+              <span class="step-label">Category</span>
+            </div>
+            <div class="step" data-step="4">
+              <span class="step-dot">4</span>
+              <span class="step-label">Payment</span>
+            </div>
+            <div class="step" data-step="5">
+              <span class="step-dot">5</span>
+              <span class="step-label">Submit</span>
+            </div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <!-- ============ FORM ============ -->
+        <form class="form-card glass-card" id="registrationForm" novalidate>
+
+          <!-- STEP 1 — TEAM DETAILS -->
+          <div class="step-panel active" id="step-1">
+            <div class="form-head">
+              <h2>Step 1 · Team Details</h2>
+              <p>Tell us about your squad.</p>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="teamName">Team Name <span class="req">*</span></label>
+                <input type="text" id="teamName" name="teamName" placeholder="e.g. Phoenix Squad" maxlength="40" autocomplete="off">
+                <p class="error-msg" id="err-teamName"></p>
+              </div>
+              <div class="field">
+                <label for="captainName">Captain Name <span class="req">*</span></label>
+                <input type="text" id="captainName" name="captainName" placeholder="e.g. Arjun Mehta" maxlength="40" autocomplete="off">
+                <p class="error-msg" id="err-captainName"></p>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="captainWhatsApp">Captain WhatsApp Number <span class="req">*</span></label>
+                <input type="tel" id="captainWhatsApp" name="captainWhatsApp" placeholder="e.g. 9876543210" maxlength="16" autocomplete="off">
+                <p class="hint-text">10 to 15 digits. We'll send match details here.</p>
+                <p class="error-msg" id="err-captainWhatsApp"></p>
+              </div>
+              <div class="field">
+                <label for="teamUID">Team UID <span class="req">*</span></label>
+                <input type="text" id="teamUID" name="teamUID" placeholder="e.g. 5678493201" maxlength="16" autocomplete="off">
+                <p class="hint-text">Your main / squad Free Fire UID (numbers only).</p>
+                <p class="error-msg" id="err-teamUID"></p>
+              </div>
+            </div>
+            <div class="field">
+              <label>Team Logo (optional)</label>
+              <label class="file-label" for="teamLogo">
+                <input type="file" id="teamLogo" name="teamLogo" accept="image/png,image/jpeg,image/webp,image/gif">
+                <span class="file-box" id="fileBoxLogo">
+                  <svg class="icon" style="font-size: 1.7rem; margin-bottom: 8px;"><use href="#icon-users"/></svg>
+                  <b>Click to upload team logo</b>
+                  <span>PNG, JPG, WEBP or GIF · max 1&nbsp;MB</span>
+                </span>
+              </label>
+              <div id="previewLogo" class="file-preview hidden"></div>
+              <p class="error-msg" id="err-teamLogo"></p>
+            </div>
+          </div>
+          <!-- STEP 2 — PLAYER DETAILS -->
+          <div class="step-panel" id="step-2">
+            <div class="form-head">
+              <h2>Step 2 · Player Details</h2>
+              <p>All four starting players + optional substitute.</p>
+            </div>
+            <div id="playersRows">
+              <div class="group-title"><svg class="icon"><use href="#icon-users"/></svg><h3>Starting Players (4)</h3></div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="p1name">Player 1 Name <span class="req">*</span></label>
+                  <input type="text" id="p1name" placeholder="e.g. Rohan Verma" maxlength="40" autocomplete="off">
+                  <p class="error-msg" id="err-p1name"></p>
+                </div>
+                <div class="field">
+                  <label for="p1uid">Player 1 Free Fire UID <span class="req">*</span></label>
+                  <input type="text" id="p1uid" placeholder="numbers only" maxlength="16" autocomplete="off">
+                  <p class="error-msg" id="err-p1uid"></p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="p2name">Player 2 Name <span class="req">*</span></label>
+                  <input type="text" id="p2name" placeholder="e.g. Simran Kaur" maxlength="40" autocomplete="off">
+                  <p class="error-msg" id="err-p2name"></p>
+                </div>
+                <div class="field">
+                  <label for="p2uid">Player 2 Free Fire UID <span class="req">*</span></label>
+                  <input type="text" id="p2uid" placeholder="numbers only" maxlength="16" autocomplete="off">
+                  <p class="error-msg" id="err-p2uid"></p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="p3name">Player 3 Name <span class="req">*</span></label>
+                  <input type="text" id="p3name" placeholder="e.g. Dev Patel" maxlength="40" autocomplete="off">
+                  <p class="error-msg" id="err-p3name"></p>
+                </div>
+                <div class="field">
+                  <label for="p3uid">Player 3 Free Fire UID <span class="req">*</span></label>
+                  <input type="text" id="p3uid" placeholder="numbers only" maxlength="16" autocomplete="off">
+                  <p class="error-msg" id="err-p3uid"></p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="p4name">Player 4 Name <span class="req">*</span></label>
+                  <input type="text" id="p4name" placeholder="e.g. Neha Singh" maxlength="40" autocomplete="off">
+                  <p class="error-msg" id="err-p4name"></p>
+                </div>
+                <div class="field">
+                  <label for="p4uid">Player 4 Free Fire UID <span class="req">*</span></label>
+                  <input type="text" id="p4uid" placeholder="numbers only" maxlength="16" autocomplete="off">
+                  <p class="error-msg" id="err-p4uid"></p>
+                </div>
+              </div>
+
+              <div class="group-title"><svg class="icon"><use href="#icon-users"/></svg><h3>Substitute (optional)</h3></div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="subName">Substitute Name (optional)</label>
+                  <input type="text" id="subName" placeholder="leave blank if none" maxlength="40" autocomplete="off">
+                  <p class="error-msg" id="err-subName"></p>
+                </div>
+                <div class="field">
+                  <label for="subUid">Substitute Free Fire UID (optional)</label>
+                  <input type="text" id="subUid" placeholder="numbers only" maxlength="16" autocomplete="off">
+                  <p class="error-msg" id="err-subUid"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- STEP 3 — PARTICIPANT CATEGORY (& COLLEGE DETAILS) -->
+          <div class="step-panel" id="step-3">
+            <div class="form-head">
+              <h2>Step 3 · Participant Category</h2>
+              <p>Pick your category — the registration fee is set automatically.</p>
+            </div>
+
+            <div class="field">
+              <label for="participantCategory">Participant Category <span class="req">*</span></label>
+              <select id="participantCategory" name="participantCategory">
+                <option value="" selected disabled>Select your category</option>
+                <option value="DSEU / College Student">DSEU / College Student — ₹49 / team</option>
+                <option value="Outsider">Outsider — ₹79 / team</option>
+              </select>
+              <p class="hint-text" id="feeHint">Select a category to see your registration fee.</p>
+              <p class="error-msg" id="err-participantCategory"></p>
+            </div>
+
+            <!-- college details: shown only for DSEU / college students -->
+            <div id="collegeBlock" style="display:none;">
+              <div class="group-title"><svg class="icon"><use href="#icon-shield"/></svg><h3>College Details</h3></div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="collegeName">College Name <span class="req">*</span></label>
+                  <input type="text" id="collegeName" placeholder="e.g. DSEU Pusa Campus" maxlength="80" autocomplete="off">
+                  <p class="error-msg" id="err-collegeName"></p>
+                </div>
+                <div class="field">
+                  <label for="course">Course <span class="req">*</span></label>
+                  <input type="text" id="course" placeholder="e.g. B.Tech CSE" maxlength="60" autocomplete="off">
+                  <p class="error-msg" id="err-course"></p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="semester">Semester / Year <span class="req">*</span></label>
+                  <select id="semester">
+                    <option value="">Select your semester / year</option>
+                    <option value="Semester 1">Semester 1</option>
+                    <option value="Semester 2">Semester 2</option>
+                    <option value="Semester 3">Semester 3</option>
+                    <option value="Semester 4">Semester 4</option>
+                    <option value="Semester 5">Semester 5</option>
+                    <option value="Semester 6">Semester 6</option>
+                    <option value="Year 1">Year 1</option>
+                    <option value="Year 2">Year 2</option>
+                    <option value="Year 3">Year 3</option>
+                    <option value="Year 4">Year 4</option>
+                  </select>
+                  <p class="error-msg" id="err-semester"></p>
+                </div>
+                <div class="field">
+                  <label for="studentId">Student ID / Roll Number <span class="req">*</span></label>
+                  <input type="text" id="studentId" placeholder="e.g. DSEU-2025-0142" maxlength="30" autocomplete="off">
+                  <p class="hint-text">The ID of the captain registering the team.</p>
+                  <p class="error-msg" id="err-studentId"></p>
+                </div>
+              </div>
+              <p class="verify-note"><svg class="icon"><use href="#icon-shield"/></svg> College students may be asked to provide a valid student ID for verification.</p>
+            </div>
+          </div>
+          <!-- STEP 4 — SECURE YOUR SLOT (PAYMENT) -->
+          <div class="step-panel" id="step-4">
+            <div class="form-head">
+              <h2>Step 4 · Secure Your Slot</h2>
+              <p>Pay the registration fee and upload your payment proof.</p>
+            </div>
+
+            <div class="pay-card">
+              <!-- dynamic fee, derived from the category selected in Step 3 (never editable) -->
+              <div class="pay-fee">
+                <span class="pay-fee-label">Your Registration Fee</span>
+                <span class="pay-fee-amount" id="payFeeAmount">₹49</span>
+                <span class="pay-fee-cat" id="payFeeCat">Select your category first</span>
+              </div>
+
+              <!-- official UPI QR image (img/qr-upi.png) -->
+              <div class="qr-zone">
+                <img src="qrimage.jpg" alt="Scan this UPI QR code to pay the registration fee" id="qrimage" class="qr-img"
+                     onerror="this.onerror=null;this.style.display='none';document.getElementById('qrMissing').style.display='block';">
+                <p class="qr-missing" id="qrMissing" style="display:none;">QR image not found — please add <b>img/qr-upi.png</b> to the project folder.</p>
+              </div>
+
+              <div class="scan-title"><svg class="icon"><use href="#icon-scan"/></svg> Scan &amp; Pay</div>
+              <ol class="pay-steps">
+                <li>Scan the QR code using any UPI app.</li>
+                <li>Pay the displayed registration fee.</li>
+                <li>Complete the payment.</li>
+                <li>Enter your UTR / Transaction ID.</li>
+                <li>Upload your payment screenshot.</li>
+              </ol>
+
+              <div class="field">
+                <label for="utr">UTR / Transaction ID <span class="req">*</span></label>
+                <input type="text" id="utr" name="utr" placeholder="Enter your UTR / transaction ID" maxlength="40" autocomplete="off">
+                <p class="hint-text">Find the Transaction / UTR ID in your UPI app (GPay, PhonePe, Paytm…) after paying.</p>
+                <p class="error-msg" id="err-utr"></p>
+              </div>
+
+              <div class="field">
+                <label>Payment Screenshot <span class="req">*</span></label>
+                <label class="file-label" for="paymentScreenshot">
+                  <input type="file" id="paymentScreenshot" name="paymentScreenshot" accept="image/png,image/jpeg,image/webp" required>
+                  <span class="file-box" id="fileBoxPayment">
+                    <svg class="icon" style="font-size: 1.7rem; margin-bottom: 8px;"><use href="#icon-shield"/></svg>
+                    <b>Upload payment screenshot</b>
+                    <span>JPG, JPEG, PNG or WEBP · max 2&nbsp;MB</span>
+                  </span>
+                </label>
+                <div id="previewPayment" class="file-preview hidden"></div>
+                <p class="error-msg" id="err-paymentScreenshot"></p>
+              </div>
+
+              <label class="confirm-row" for="paymentConfirm">
+                <input type="checkbox" id="paymentConfirm">
+                <span>I confirm that I have paid the correct registration fee and entered the correct UTR / Transaction ID.</span>
+              </label>
+              <p class="error-msg" id="err-paymentConfirm"></p>
+            </div>
+          </div>
+
+          <!-- STEP 5 — VERIFICATION -->
+          <div class="step-panel" id="step-5">
+            <div class="form-head">
+              <h2>Step 5 · Verification</h2>
+              <p>Final details to confirm your registration.</p>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="instagram">Instagram Username <span class="req">*</span></label>
+                <input type="text" id="instagram" placeholder="e.g. @your.username" maxlength="40" autocomplete="off">
+                <p class="hint-text">We follow to confirm your team slot.</p>
+                <p class="error-msg" id="err-instagram"></p>
+              </div>
+              <div class="field">
+                <label for="whatsapp">WhatsApp Number (for updates) <span class="req">*</span></label>
+                <input type="tel" id="whatsapp" placeholder="e.g. 9876543210" maxlength="16" autocomplete="off">
+                <p class="error-msg" id="err-whatsapp"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ FORM ACTIONS ============ -->
+          <div class="form-actions" id="formActions">
+            <button type="button" class="btn btn-ghost" id="btnPrev" disabled>← Previous</button>
+            <button type="button" class="btn btn-primary" id="btnNext">Next →</button>
+            <button type="submit" class="btn btn-primary" id="btnSubmit" style="display:none;">
+              <svg class="icon"><use href="#icon-check"/></svg> Submit Registration
+            </button>
+          </div>
+
+          <div class="form-error-box" id="formErrorBox">
+            <svg class="icon"><use href="#icon-alert"/></svg>
+            <span id="formErrorText">Please fix the highlighted fields before continuing.</span>
+          </div>
+        </form>
+
+        <p class="form-note">By registering you agree to the tournament <a href="index.html#rules" style="color: var(--primary-soft); font-weight: 700;">rules &amp; fair-play policy</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        © <span id="year">2026</span> DSEU Esports Tournament · <a href="admin.html" style="color: var(--primary-soft);">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/main.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+/* ============================================================
+   DSEU FREE FIRE ESPORTS TOURNAMENT — ADMIN PAGE STYLES
+   File : css/admin.css  (only loaded on admin.html)
+   ============================================================ */
+
+/* ---------- 1. STAT CARDS (dashboard) ---------- */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; margin-bottom: 34px; }
+.stat-card { padding: 22px 20px; display: flex; align-items: center; gap: 16px; position: relative; overflow: hidden; }
+.stat-icon {
+  width: 52px; height: 52px; flex: none; display: grid; place-items: center;
+  border-radius: 14px; font-size: 1.35rem;
+}
+.stat-info .stat-num { font-family: var(--font-display); font-size: 1.7rem; font-weight: 800; line-height: 1.1; }
+.stat-info .stat-label { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; margin-top: 4px; }
+
+.stat-total .stat-icon { color: var(--primary-soft); background: rgba(255, 107, 0, 0.12); border: 1px solid rgba(255, 107, 0, 0.35); }
+.stat-total .stat-num { color: var(--primary-soft); }
+.stat-pending .stat-icon { color: var(--gold); background: rgba(255, 201, 77, 0.12); border: 1px solid rgba(255, 201, 77, 0.35); }
+.stat-pending .stat-num { color: var(--gold); }
+.stat-approved .stat-icon { color: #58e58a; background: rgba(46, 213, 115, 0.12); border: 1px solid rgba(46, 213, 115, 0.35); }
+.stat-approved .stat-num { color: #58e58a; }
+.stat-rejected .stat-icon { color: #ff7a89; background: rgba(255, 71, 87, 0.12); border: 1px solid rgba(255, 71, 87, 0.35); }
+.stat-rejected .stat-num { color: #ff7a89; }
+
+/* ---------- 2. TOOLBAR (search + buttons) ---------- */
+.admin-toolbar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.admin-toolbar h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+.toolbar-right { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+.search-box { position: relative; flex: 1; min-width: 240px; max-width: 420px; }
+.search-box .icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-dim); width: 18px; height: 18px; pointer-events: none; }
+.search-box input {
+  width: 100%; padding: 12px 16px 12px 44px;
+  border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05); color: var(--text-main);
+  font-family: var(--font-body); font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-box input::placeholder { color: var(--text-dim); }
+.search-box input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.18); }
+
+.status-filter select {
+  padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05); color: var(--text-main); font-family: var(--font-body); font-size: 0.95rem;
+}
+.status-filter select:focus { outline: none; border-color: var(--primary); }
+/* ---------- 3. TABLE ---------- */
+.table-wrap { padding: 6px; overflow-x: auto; border-radius: var(--radius); }
+.admin-table { width: 100%; border-collapse: collapse; min-width: 760px; }
+.admin-table th, .admin-table td { padding: 15px 16px; text-align: left; white-space: nowrap; }
+.admin-table thead th {
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+  color: var(--text-dim); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-table tbody tr { border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.2s; }
+.admin-table tbody tr:hover { background: rgba(255, 107, 0, 0.05); }
+.admin-table tbody tr:last-child { border-bottom: none; }
+.admin-table .reg-id { font-family: var(--font-display); font-weight: 700; color: var(--primary-soft); font-size: 0.85rem; }
+.admin-table .team-name { font-weight: 700; color: var(--text-main); }
+.admin-table .muted { color: var(--text-muted); }
+.th-actions { text-align: right; }
+
+/* status badge */
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 13px; border-radius: 50px;
+  font-size: 0.74rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+.badge.Pending { color: var(--gold); background: rgba(255, 201, 77, 0.12); border: 1px solid rgba(255, 201, 77, 0.3); }
+.badge.Approved { color: #58e58a; background: rgba(46, 213, 115, 0.12); border: 1px solid rgba(46, 213, 115, 0.3); }
+.badge.Rejected { color: #ff7a89; background: rgba(255, 71, 87, 0.12); border: 1px solid rgba(255, 71, 87, 0.3); }
+
+/* payment status badges (gold = pending, green = verified, red = rejected) */
+.badge.pay-pending { color: var(--gold); background: rgba(255, 201, 77, 0.12); border: 1px solid rgba(255, 201, 77, 0.3); }
+.badge.pay-verified { color: #58e58a; background: rgba(46, 213, 115, 0.12); border: 1px solid rgba(46, 213, 115, 0.3); }
+.badge.pay-rejected { color: #ff7a89; background: rgba(255, 71, 87, 0.12); border: 1px solid rgba(255, 71, 87, 0.3); }
+
+/* fee + UTR columns */
+.admin-table .fee-cell { font-weight: 800; color: var(--primary-soft); font-family: var(--font-display); font-size: 0.9rem; }
+.admin-table .utr-cell { max-width: 170px; white-space: normal; word-break: break-all; }
+
+/* row action button */
+.row-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.icon-btn { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px;
+  border: 1px solid var(--glass-border); background: var(--card-bg); color: var(--text-muted); transition: all 0.2s; }
+.icon-btn:hover { color: #fff; border-color: var(--primary); box-shadow: var(--glow); transform: translateY(-2px); }
+.icon-btn.danger:hover { color: #ff7a89; border-color: var(--danger); box-shadow: 0 0 18px rgba(255, 71, 87, 0.35); }
+
+/* ---------- 4. EMPTY STATE ---------- */
+.empty-state { text-align: center; padding: 56px 20px; color: var(--text-muted); }
+.empty-state h3 { color: var(--text-main); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.table-note { margin-top: 16px; color: var(--text-dim); font-size: 0.9rem; text-align: center; }
+
+/* ---------- 5. MODAL ---------- */
+.modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal.open { display: flex; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(2, 2, 5, 0.8); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal-card { position: relative; width: min(720px, 100%); max-height: 90vh; overflow-y: auto; padding: 30px; animation: popIn 0.3s ease; }
+@keyframes popIn { from { transform: scale(0.94) translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+.modal-close { position: absolute; top: 16px; right: 16px; width: 38px; height: 38px; display: grid; place-items: center;
+  border-radius: 10px; border: 1px solid var(--glass-border); background: var(--card-bg); color: var(--text-muted); }
+.modal-close:hover { color: #fff; border-color: var(--danger); }
+.modal-head { padding-bottom: 16px; border-bottom: 1px dashed rgba(255, 255, 255, 0.12); margin-bottom: 18px; }
+.modal-badge { display: inline-block; margin-bottom: 10px; }
+.modal-head h2 { font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px; }
+.modal-head p { color: var(--primary-soft); font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; margin-top: 4px; }
+.modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; }
+.modal-kv { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 12px 14px; }
+.modal-kv .k { font-size: 0.7rem; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+.modal-kv .v { color: var(--text-main); font-weight: 600; font-size: 0.97rem; word-break: break-word; }
+.modal-kv.full { grid-column: 1 / -1; }
+.modal-kv .img-preview { width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12); margin-top: 6px; }
+.img-preview-box { margin-top: 6px; }
+.modal-foot { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 22px; padding-top: 18px; border-top: 1px dashed rgba(255, 255, 255, 0.12); }
+.modal-status-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.modal-actions-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(255, 255, 255, 0.08); }
+.modal-actions-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-dim); }
+
+/* ---------- 6. CONFIRM DELETE mini dialog ---------- */
+.confirm-overlay { position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; }
+.confirm-overlay.open { display: flex; }
+.confirm-box { width: min(420px, 100%); padding: 30px; text-align: center; animation: popIn 0.3s ease; }
+.confirm-box h3 { font-size: 1.15rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.confirm-box p { color: var(--text-muted); margin-bottom: 22px; }
+.confirm-actions { display: flex; gap: 12px; justify-content: center; }
+
+/* ---------- 7. RESPONSIVE ---------- */
+@media (max-width: 640px) {
+  .admin-toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar-right { flex-direction: column; align-items: stretch; }
+  .search-box { max-width: none; }
+  .modal-body { grid-template-columns: 1fr; }
+  .modal-foot { flex-direction: column; align-items: stretch; }
+  .modal-status-actions { justify-content: center; }
+}
