@@ -1,0 +1,1 @@
+  var fee = getRegistrationFee(category);          // per-player rate (₹49 college / ₹79 outsider)

@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    DSEU FREE FIRE ESPORTS TOURNAMENT — REGISTRATION FORM SCRIPTS
    File : js/register.js  (only loaded on register.html)
    Role : multi-step form behaviour + validation + saving.
@@ -277,6 +277,7 @@ setupFileInput('paymentScreenshot', 'paymentScreenshot', 'previewPayment', 'file
    ------------------------------------------------------------ */
 var CATEGORY_COLLEGE = 'DSEU / College Student';
 var CATEGORY_OUTSIDER = 'Outsider';
+var NUM_PAID_PLAYERS = 4;  // 4 main players per squad (substitute is NOT charged)
 
 function getSelectedCategory() {
   var s = $('participantCategory');
@@ -293,7 +294,8 @@ function getRegistrationFee(category) {
    the category changes. */
 function updateFeeUi() {
   var category = getSelectedCategory();
-  var fee = getRegistrationFee(category);
+  var fee = getRegistrationFee(category);          // per-player rate (₹49 college / ₹79 outsider)
+  var totalFee = fee * NUM_PAID_PLAYERS;            // total = per-player × 4 main players
   var collegeBlock = document.getElementById('collegeBlock');
   var hint = document.getElementById('feeHint');
 
@@ -302,13 +304,13 @@ function updateFeeUi() {
 
   if (hint) {
     hint.textContent = fee > 0
-      ? 'Registration Fee: ₹' + fee + ' — set automatically from your category.'
+      ? 'Registration Fee: ₹' + totalFee + ' (₹' + fee + '/player × ' + NUM_PAID_PLAYERS + ' players) — set automatically from your category.'
       : 'Select a category to see your registration fee.';
   }
 
   var amountEl = document.getElementById('payFeeAmount');
   var catEl = document.getElementById('payFeeCat');
-  if (amountEl) { amountEl.textContent = fee > 0 ? '₹' + fee : '₹—'; }
+  if (amountEl) { amountEl.textContent = fee > 0 ? '₹' + totalFee : '₹—'; }
   if (catEl) {
     catEl.textContent =
       category === CATEGORY_COLLEGE ? 'College Student Registration' :
@@ -342,61 +344,126 @@ form.addEventListener('input', function (e) {
 /* ------------------------------------------------------------
    6. SUBMIT — collect all data, save it, go to success page
    ------------------------------------------------------------ */
-function submitRegistration() {
+async function submitRegistration() {
   var players = [1, 2, 3, 4].map(function (n) {
-    return { name: $('p' + n + 'name').value.trim(), uid: $('p' + n + 'uid').value.trim() };
+    return {
+      name: $('p' + n + 'name').value.trim(),
+      uid: $('p' + n + 'uid').value.trim()
+    };
   });
 
-  // the fee comes from the selected category — never typed by the user
+  // Fee comes automatically from selected category
   var category = getSelectedCategory();
-  var fee = getRegistrationFee(category);
+  var fee = getRegistrationFee(category);  // per-player rate (₹49 college / ₹79 outsider)
+  // Total = per-player rate × NUM_PAID_PLAYERS (4 main players, substitute not charged)
+  var totalFee = fee * NUM_PAID_PLAYERS;
   var isCollege = category === CATEGORY_COLLEGE;
 
-  // build the registration object
+  // Generate registration ID
+  var registrationId = nextRegistrationId();
+
+  // Build a localStorage-compatible registration object.
+  // camelCase keys + nested objects — matches what admin.js and success.js expect.
   var registration = {
-    id: nextRegistrationId(),                 // unique ID, e.g. DSEU-FE-001
+    id: registrationId,
     teamName: $('teamName').value.trim(),
     captainName: $('captainName').value.trim(),
     captainWhatsApp: $('captainWhatsApp').value.trim(),
     teamUID: $('teamUID').value.trim(),
-    teamLogo: uploaded.teamLogo,
+    participantCategory: category,
+    registrationFee: totalFee,
+    feePerPlayer: fee,
     players: players,
-    substitute: {
-      name: $('subName').value.trim(),
-      uid: $('subUid').value.trim()
-    },
-    participantCategory: category,            // "DSEU / College Student" OR "Outsider"
-    registrationFee: fee,                     // 49 OR 79
-    college: isCollege ? {
-      name: $('collegeName').value.trim(),
-      course: $('course').value.trim(),
-      semester: $('semester').value,
-      studentId: $('studentId').value.trim()
-    } : { name: '', course: '', semester: '', studentId: '' },
+    substitute: $('subName').value.trim()
+      ? { name: $('subName').value.trim(), uid: $('subUid').value.trim() }
+      : null,
+    college: isCollege
+      ? {
+          name: $('collegeName').value.trim(),
+          course: $('course').value.trim(),
+          semester: $('semester').value,
+          studentId: $('studentId').value.trim()
+        }
+      : null,
+    utr: $('utr').value.trim(),
     verification: {
       instagram: $('instagram').value.trim(),
       whatsapp: $('whatsapp').value.trim(),
+      utr: $('utr').value.trim(),
       paymentScreenshot: uploaded.paymentScreenshot
     },
-    utr: $('utr').value.trim(),               // UTR / Transaction ID
-    paymentStatus: 'Pending Verification',    // admin verifies the payment manually
-    status: 'Pending',                        // registration status — new teams start as "Pending"
+    teamLogo: uploaded.teamLogo,
+    paymentStatus: 'Pending Verification',
+    status: 'Pending',
     date: new Date().toISOString()
   };
 
-  // save to localStorage, remember the ID, then go to the success page
-  var list = getRegistrations();
-  list.push(registration);
+  // 3. Build the row that matches the actual Supabase `registrations` columns.
+  //    The database columns are:
+  //    id, registration_id, team_name, captain_name, captain_whatsapp,
+  //    team_uid, team_logo, players, substitute, participant_category,
+  //    price_per_player, total_registration_fee, college_name, course,
+  //    semester, student_id, instagram, whatsapp, payment_screenshot,
+  //    utr, payment_status, status, created_at
+  var supabaseRow = {
+    registration_id: registrationId,
+    team_name: registration.teamName,
+    captain_name: registration.captainName,
+    captain_whatsapp: registration.captainWhatsApp,
+    team_uid: registration.teamUID,
+    team_logo: registration.teamLogo,
+    players: players,
+    substitute: registration.substitute,
+    participant_category: registration.participantCategory,
+    price_per_player: fee,
+    total_registration_fee: totalFee,
+    college_name: isCollege ? registration.college.name : '',
+    course: isCollege ? registration.college.course : '',
+    semester: isCollege ? registration.college.semester : '',
+    student_id: isCollege ? registration.college.studentId : '',
+    instagram: registration.verification.instagram,
+    whatsapp: registration.verification.whatsapp,
+    payment_screenshot: registration.verification.paymentScreenshot,
+    utr: registration.verification.utr,
+    payment_status: registration.paymentStatus,
+    status: registration.status,
+    created_at: new Date().toISOString()
+  };
+
+  // 4. Insert into Supabase — only redirect AFTER a confirmed success.
+  //    Supabase JS v2 returns { error } — it does NOT throw for API
+  //    errors (RLS, unknown columns, etc.), so we must check .error ourselves.
+  //    We intentionally omit .select() so anonymous users do not need SELECT permission.
+  var supabaseResponse;
   try {
-    saveRegistrations(list);
-  } catch (e) {
-    // localStorage is full (too many big images) — tell the user clearly
-    showFormError('Could not save because your browser storage is full. Try smaller images or clear old data.');
+    supabaseResponse = await supabaseClient
+      .from('registrations')
+      .insert([supabaseRow]);
+  } catch (err) {
+    // Network error, timeout, or supabaseClient not initialised
+    console.error('Supabase insert threw an exception:', err);
+    showFormError('Could not save your registration to the database. ' +
+                  'Please try again. (Check the console for the exact error.)');
     return;
   }
-  setLastId(registration.id);
-  location.href = 'success.html?id=' + encodeURIComponent(registration.id);
-}
 
-/* start the form on step 1 */
-goToStep(1);
+  if (supabaseResponse.error) {
+    // API error returned by Supabase (e.g. RLS policy violation, column mismatch)
+    console.error('Supabase insert failed:', supabaseResponse.error);
+    showFormError('Could not save your registration to the database. ' +
+                  'Please try again. (Check the console for the exact error.)');
+    return;
+  }
+
+  // Save to localStorage (secondary cache — admin panel + success page read from here)
+  var allRegs = getRegistrations();
+  allRegs.push(registration);
+  saveRegistrations(allRegs);
+
+  // Remember the last registration ID (used by success.js)
+  setLastId(registrationId);
+
+  // 5. Go to success page — only AFTER Supabase confirms the insert
+  location.href =
+    'success.html?id=' + encodeURIComponent(registrationId);
+}

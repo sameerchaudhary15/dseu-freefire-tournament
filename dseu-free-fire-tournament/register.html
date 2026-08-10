@@ -392,8 +392,20 @@
     </div>
   </footer>
 
-  <!-- ============ SCRIPTS ============ -->
-  <script src="js/main.js"></script>
-  <script src="js/register.js"></script>
+    <!-- ============ SCRIPTS ============ -->
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://rnhpeefepjazvltjjwtf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_lxmb37FMpuekLqRZWE-KGg_F2FjhDKC";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+</script>
+<script src="js/register.js"></script>
+
 </body>
-</html>
+</html> 
